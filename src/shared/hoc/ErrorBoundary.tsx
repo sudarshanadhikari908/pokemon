@@ -1,18 +1,14 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
 export interface IState {
   hasError: boolean;
-  errorInfo: any;
 }
-
 export class ErrorBoundary extends React.Component<any, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
       hasError: false,
-      errorInfo: {},
     };
   }
 
@@ -25,18 +21,18 @@ export class ErrorBoundary extends React.Component<any, IState> {
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state;
+    const { children } = this.props;
+    if (hasError) {
       return (
         <div className="error__boundary__wrapper">
-          {/* <img src={Wrong} alt="" /> */}
           <h1>Something went wrong</h1>
-          {/* <Link to="/" className="link__goback"> */}
-            {/* <ArrowLeftOutlined /> */}
+          <Link to="/" className="link__goback">
             Go to home page
-          {/* </Link> */}
+          </Link>
         </div>
       );
     }
-    return this.props.children;
+    return children;
   }
 }

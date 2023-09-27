@@ -1,9 +1,10 @@
+import { IPokemonDetails, IPokemonType } from "@shared/interface/pokemon";
 import { getImageURL } from "@shared/utils/get-pokemon-image";
 import React from "react";
 import { Card, Stack, Badge } from "react-bootstrap";
 
 type IProps = {
-  pokemon: any;
+  pokemon: IPokemonDetails;
   index: number;
 };
 
@@ -22,7 +23,7 @@ export function CardBody({ pokemon, index }: IProps) {
               {pokemon?.name}
             </div>
             <Stack direction="vertical" gap={2}>
-              {pokemon?.types?.map((type: any) => (
+              {pokemon?.types?.map((type: IPokemonType) => (
                 <React.Fragment key={type?.slot}>
                   <Badge
                     bg="hsla(0,0%,100%,.2)"
@@ -36,7 +37,7 @@ export function CardBody({ pokemon, index }: IProps) {
           </div>
           <div className="col-md-6">
             <img
-              src={getImageURL(pokemon?.id)}
+              src={getImageURL(String(pokemon?.id))}
               alt={pokemon?.name}
               className="w-auto h-96 mx-auto"
             />

@@ -1,8 +1,13 @@
+import {
+  IPokemonAbilities,
+  IPokemonDetails,
+  IPokemonType,
+} from "@shared/interface/pokemon";
 import React, { useState } from "react";
 import { Nav, ProgressBar } from "react-bootstrap";
 
 type IProps = {
-  pokemon: any;
+  pokemon: IPokemonDetails;
 };
 
 function TabbedNavigation({ pokemon }: IProps) {
@@ -49,7 +54,7 @@ function TabbedNavigation({ pokemon }: IProps) {
           <>
             <div className="flex flex-row">
               <span className="w-20 text-left">Species</span>
-              {pokemon?.types?.map((type: any, index: number) => (
+              {pokemon?.types?.map((type: IPokemonType, index: number) => (
                 <React.Fragment key={type?.type?.name}>
                   <span className="font-extrabold capitalize">
                     {type?.type?.name}
@@ -70,16 +75,18 @@ function TabbedNavigation({ pokemon }: IProps) {
             </div>
             <div className="flex flex-row">
               <span className="w-20 text-left">Abilties</span>
-              {pokemon?.abilities?.map((ability: any, index: number) => (
-                <React.Fragment key={ability?.ability?.name}>
-                  <span className="font-extrabold capitalize">
-                    {ability?.ability?.name}
-                  </span>
-                  {index < Number(pokemon?.abilities?.length) - 1 && (
-                    <span className="font-extrabold mr-2">, </span>
-                  )}
-                </React.Fragment>
-              ))}
+              {pokemon?.abilities?.map(
+                (ability: IPokemonAbilities, index: number) => (
+                  <React.Fragment key={ability?.ability?.name}>
+                    <span className="font-extrabold capitalize">
+                      {ability?.ability?.name}
+                    </span>
+                    {index < Number(pokemon?.abilities?.length) - 1 && (
+                      <span className="font-extrabold mr-2">, </span>
+                    )}
+                  </React.Fragment>
+                ),
+              )}
             </div>
           </>
         )}

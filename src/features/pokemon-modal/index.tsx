@@ -6,13 +6,14 @@ import "./pokemonModal.css";
 import { Badge, Button, Modal, Stack } from "react-bootstrap";
 import { useAppDispatch } from "@store/redux-Hooks";
 import { setPokemonTeam } from "@store/reducers/pokemon";
+import { IPokemonDetails, IPokemonType } from "@shared/interface/pokemon";
 
 type IProps = {
   show: boolean;
   handleClose: () => void;
   modalId: number | null;
   cardColorClass: string;
-  pokemon: any;
+  pokemon: IPokemonDetails;
 };
 
 function PokemonModal({
@@ -47,7 +48,7 @@ function PokemonModal({
                       </div>
                     </Modal.Title>
                     <Stack direction="vertical" gap={2}>
-                      {pokemon?.types?.map((type: any) => (
+                      {pokemon?.types?.map((type: IPokemonType) => (
                         <React.Fragment key={type?.slot}>
                           <Badge
                             bg="hsla(0,0%,100%,.2)"
@@ -73,7 +74,7 @@ function PokemonModal({
               <Modal.Body className="text-center">
                 <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-[10rem]">
                   <img
-                    src={getImageURL(pokemon?.id)}
+                    src={getImageURL(String(pokemon?.id))}
                     alt={pokemon?.name}
                     className="max-h-48 w-auto"
                   />

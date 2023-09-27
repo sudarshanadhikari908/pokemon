@@ -1,10 +1,15 @@
 import PokemonModal from "@features/pokemon-modal";
+import {
+  IPokemonAbilities,
+  IPokemonDetails,
+  IPokemonType,
+} from "@shared/interface/pokemon";
 import { getImageURL } from "@shared/utils/get-pokemon-image";
 import React from "react";
 import { Card, Stack, Badge } from "react-bootstrap";
 
 type IProps = {
-  pokemon: any;
+  pokemon: IPokemonDetails;
   index: number;
   handleCardClick: (id: number) => void;
   show: boolean;
@@ -37,7 +42,7 @@ function CardBody({
                 {pokemon?.name}
               </div>
               <Stack direction="vertical" gap={2}>
-                {pokemon?.types?.map((type: any) => (
+                {pokemon?.types?.map((type: IPokemonType) => (
                   <React.Fragment key={type?.slot}>
                     <Badge
                       bg="hsla(0,0%,100%,.2)"
@@ -52,14 +57,14 @@ function CardBody({
             <div className="col-md-6 lg:!h-96">
               {/* Second column for the image */}
               <img
-                src={getImageURL(pokemon?.id)}
+                src={getImageURL(String(pokemon?.id))}
                 alt={pokemon?.name}
                 className="w-full h-auto md:!h-96 "
               />
             </div>
             <div>
               <Stack direction="horizontal" gap={2} className="flex flex-wrap">
-                {pokemon?.abilities?.map((ability: any) => (
+                {pokemon?.abilities?.map((ability: IPokemonAbilities) => (
                   <React.Fragment key={ability?.ability?.name}>
                     <Badge
                       bg="hsla(0,0%,100%,.2)"

@@ -12,7 +12,7 @@ function MyTeam() {
         <Layout />
         <Container fluid="md">
           <Row bsPrefix="row">
-            {pokemonTeam?.map((pokemon: any, index: any) => (
+            {pokemonTeam?.map((pokemon: any, index: number) => (
               <React.Fragment key={pokemon?.id}>
                 <Col lg={4} md={6} sm={12} className="mb-5">
                   <CardBody pokemon={pokemon} index={index} />

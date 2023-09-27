@@ -9,18 +9,16 @@ function Layout() {
   return (
     <>
       <p className="font-bold text-primary">Select Generation:</p>
-      <div className="grid grid-cols-3 gap-4 mx-auto">
-        <div />
-
-        <div className="col-span-1">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-auto">
+        <div className="md:col-span-1" />{" "}
+        <div className="md:col-span-1 col-span-2">
           <GenerationTab
             generationKey={generationKey}
             setGenerationKey={setGenerationKey}
             setOffset={setOffset}
           />
         </div>
-
-        <div className="col-span-1 flex items-start justify-end">
+        <div className="md:col-span-1 col-span-2 flex items-start justify-end md:justify-start">
           <Button className="bg-primary" onClick={() => navigate("/my-team")}>
             My Team
           </Button>

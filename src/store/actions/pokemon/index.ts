@@ -2,9 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const getPokemonByGeneration = createAsyncThunk<any, any>(
+export const getPokemonByGeneration = createAsyncThunk(
   "getPokemonByGeneration",
-  async (api) => {
+  async (api: string) => {
     try {
       const res = await axios.get(api);
       if (res.status === 200) {

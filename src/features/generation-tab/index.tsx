@@ -14,18 +14,21 @@ function GenerationTab({ generationKey, setGenerationKey, setOffset }: IProps) {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleTabSelect = async (k: any) => {
+    dispatch(resetPokemonDetail());
+    setGenerationKey(k);
+    setOffset(setOffsetValue(k));
+    if (location.pathname !== "/") navigate("/");
+  };
+
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="flex flex-col md:flex-row items-center">
       <Tabs
         id="controlled-tab-example"
         activeKey={generationKey}
-        onSelect={async (k: any) => {
-          await dispatch(resetPokemonDetail());
-          setGenerationKey(k);
-          setOffset(setOffsetValue(k));
-          if (location.pathname !== "/") navigate("/");
-        }}
-        className="mb-3"
+        onSelect={handleTabSelect}
+        className="mb-3 md:w-full md:flex md:flex-row"
       >
         <Tab eventKey="1" title="I" />
         <Tab eventKey="2" title="II" />

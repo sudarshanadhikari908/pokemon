@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getPokemonByGeneration } from "@store/actions/pokemon";
 import { toast } from "react-toastify";
+import { IPokemonDetails } from "@shared/interface/pokemon";
 
 interface IPokemon {
   name: string;
@@ -8,7 +9,7 @@ interface IPokemon {
 }
 
 interface State {
-  pokemonTeam: any;
+  pokemonTeam: IPokemon[];
   pokemonList:
     | {
         count: number;
@@ -18,7 +19,7 @@ interface State {
       }
     | undefined;
   pokemonListLoading: boolean;
-  pokemonDetail: any;
+  pokemonDetail: IPokemonDetails | undefined;
 }
 
 const initialState: State = {

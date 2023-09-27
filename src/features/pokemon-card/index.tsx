@@ -1,9 +1,10 @@
 import CardBody from "@shared/components/card";
+import { IPokemonDetails } from "@shared/interface/pokemon";
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 
 type IProps = {
-  pokemonDetail: any;
+  pokemonDetail: IPokemonDetails[];
   show: boolean;
   setShow: (value: boolean) => void;
   modalId: number | null;
@@ -28,9 +29,8 @@ function PokemonCard({
     <>
       <Container fluid="md">
         <Row bsPrefix="row">
-          {pokemonDetail?.map((pokemon: any, index: any) => (
+          {pokemonDetail?.map((pokemon: IPokemonDetails, index: number) => (
             <React.Fragment key={pokemon?.id}>
-              {/* For laptop view (3 cards per row) */}
               <Col lg={4} md={6} sm={12} className="mb-5">
                 <CardBody
                   pokemon={pokemon}
